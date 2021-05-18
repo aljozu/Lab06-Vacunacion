@@ -13,7 +13,7 @@ Principales características:
     "tlf": "---------",
     "email": "email",
     "fdv": "yyyy-mm-dd"
-  }
+    }
   ```
   Notas: Implementado de manera local por lo que se requiere cambiar aplication.properties:
   ```java
