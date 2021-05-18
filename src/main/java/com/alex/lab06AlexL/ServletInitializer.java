@@ -1,4 +1,4 @@
-package com.alex.lab06AlexL;
+package com.alex.lab06alexl;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

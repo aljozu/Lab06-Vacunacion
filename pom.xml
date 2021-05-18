@@ -16,6 +16,9 @@
 	<description>Vacunation Lab</description>
 	<properties>
 		<java.version>16</java.version>
+		<sonar.projectKey>aljozu_Lab06-Vacunacion</sonar.projectKey>
+		<sonar.organization>aljozu</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
 		<dependency>

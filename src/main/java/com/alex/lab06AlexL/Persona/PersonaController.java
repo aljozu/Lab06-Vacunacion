@@ -1,4 +1,4 @@
-package com.alex.lab06AlexL.Persona;
+package com.alex.lab06alexl.persona;
 
 import java.util.List;
 import java.util.logging.Logger;

@@ -1,15 +1,14 @@
-package com.alex.lab06AlexL;
+package com.alex.lab06alexl;
 
 import java.util.logging.Logger;
 
-import com.alex.lab06AlexL.Persona.Persona;
-import com.alex.lab06AlexL.Persona.PersonaController;
+import com.alex.lab06alexl.persona.Persona;
+import com.alex.lab06alexl.persona.PersonaController;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.jupiter.api.Assertions;
-
 
 @SpringBootTest
 class Lab06AlexLApplicationTests {
@@ -17,27 +16,27 @@ class Lab06AlexLApplicationTests {
 
 	@Autowired
 	private PersonaController controller;
-	
+
 	@Test
 	void contextLoads() {
 		Assertions.assertNotNull(controller);
 	}
 
 	@Test
-	void expectedGetPersona(){
+	void expectedGetPersona() {
 		var persona = controller.getPersonaByDNI("48874885");
 		Assertions.assertEquals("48874885", persona.getId());
 	}
 
 	@Test
-	void expectedTime(){
+	void expectedTime() {
 		Persona persona = controller.getPersonaByDNI("48874885");
 		long start = System.currentTimeMillis();
 		persona.getFdv();
-        long end = System.currentTimeMillis();
-        long duration = end - start;
+		long end = System.currentTimeMillis();
+		long duration = end - start;
 		logger.info(Long.toString(duration));
-        Assertions.assertTrue(duration <= 400);
+		Assertions.assertTrue(duration <= 400);
 	}
 
 }

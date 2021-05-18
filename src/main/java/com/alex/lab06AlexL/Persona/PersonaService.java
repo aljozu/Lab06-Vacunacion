@@ -1,4 +1,4 @@
-package com.alex.lab06AlexL.Persona;
+package com.alex.lab06alexl.persona;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -48,7 +48,7 @@ public class PersonaService {
             var name1 = persona.getApellidos() + " " + persona.getNombres();
             var name2 = obj.getString("apellido_p") + " " + obj.getString("apellido_m") + " "
                     + obj.getString("nombres");
-            if (name1.toLowerCase().equals(name2.toLowerCase())) {
+            if (name1.equalsIgnoreCase(name2)) {
                 return true;
             } else {
                 throw new IllegalStateException("Los datos no coinciden");
@@ -61,7 +61,7 @@ public class PersonaService {
         if (personaOptional.isPresent()) {
             throw new IllegalStateException("Este DNI ya se encuentra registrado");
         }
-        if (existe(persona)) {
+        if (Boolean.TRUE.equals(existe(persona))) {
             personaRepository.save(persona);
         } else {
             throw new IllegalStateException("Este DNI no se encuentra en la base de datos");
@@ -70,10 +70,9 @@ public class PersonaService {
 
     @Transactional
     public void updatePersona(String id, String fdv) {
-        Persona persona = personaRepository.findById(id)
+        var persona = personaRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("La persona con el dni: " + id + ", no existe."));
-        LocalDate vactime = LocalDate.parse(fdv);
-        System.out.println(vactime);
+        var vactime = LocalDate.parse(fdv);
         persona.setFdv(vactime);
     }
 
