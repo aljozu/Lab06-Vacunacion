@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import com.alex.lab06alexl.exception.CustomException;
 import com.mashape.unirest.http.Unirest;
 
 import org.json.JSONObject;
@@ -31,7 +32,7 @@ public class PersonaService {
         if (personaOptional.isPresent())
             return personaOptional.get();
         else
-            throw new RuntimeException("El usuario con el dni " + dni + " no existe!");
+            throw new CustomException("El usuario con el dni " + dni + " no existe!");
     }
 
     private Boolean existe(Persona persona) throws Exception {
@@ -51,7 +52,7 @@ public class PersonaService {
             if (name1.equalsIgnoreCase(name2)) {
                 return true;
             } else {
-                throw new IllegalStateException("Los datos no coinciden");
+                throw new CustomException("Los datos no coinciden");
             }
         }
     }
@@ -59,19 +60,19 @@ public class PersonaService {
     public void addNewPersona(Persona persona) throws Exception {
         Optional<Persona> personaOptional = personaRepository.findById(persona.getId());
         if (personaOptional.isPresent()) {
-            throw new IllegalStateException("Este DNI ya se encuentra registrado");
+            throw new CustomException("Este DNI ya se encuentra registrado");
         }
         if (Boolean.TRUE.equals(existe(persona))) {
             personaRepository.save(persona);
         } else {
-            throw new IllegalStateException("Este DNI no se encuentra en la base de datos");
+            throw new CustomException("Este DNI no se encuentra en la base de datos");
         }
     }
 
     @Transactional
     public void updatePersona(String id, String fdv) {
         var persona = personaRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException("La persona con el dni: " + id + ", no existe."));
+                .orElseThrow(() -> new CustomException("La persona con el dni: " + id + ", no existe."));
         var vactime = LocalDate.parse(fdv);
         persona.setFdv(vactime);
     }
