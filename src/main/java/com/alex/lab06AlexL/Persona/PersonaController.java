@@ -33,7 +33,12 @@ public class PersonaController {
     @GetMapping("/{dni}")
     public String getPersonaById(@PathVariable String dni) {
         var per = personaService.findOneById(dni);
-        return "La fecha de vacunación para " + per.getNombres() + " " + per.getApellidos() + " será: " + per.getFdv();
+        return "La fecha de vacunación para " + per.getNombres().toUpperCase() + " " + per.getApellidos().toUpperCase() + " será: " + per.getFdv();
+    }
+
+    public Persona getPersonaByDNI(String dni) {
+        return personaService.findOneById(dni);
+
     }
 
     @PostMapping
