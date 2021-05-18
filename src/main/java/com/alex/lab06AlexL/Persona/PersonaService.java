@@ -48,8 +48,6 @@ public class PersonaService {
             var name1 = persona.getApellidos() + " " + persona.getNombres();
             var name2 = obj.getString("apellido_p") + " " + obj.getString("apellido_m") + " "
                     + obj.getString("nombres");
-            logger.info(name1);
-            logger.info(name2);
             if (name1.toLowerCase().equals(name2.toLowerCase())) {
                 return true;
             } else {

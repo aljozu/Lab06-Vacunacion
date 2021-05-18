@@ -10,5 +10,4 @@ import org.springframework.stereotype.Repository;
 public interface PersonaRepository extends JpaRepository<Persona, String>{
     @Query("SELECT s FROM Persona s WHERE s.id = ?1")
     Optional<Persona> findPersonaByID(String id);
-
 }

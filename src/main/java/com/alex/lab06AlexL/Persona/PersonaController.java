@@ -38,7 +38,6 @@ public class PersonaController {
 
     public Persona getPersonaByDNI(String dni) {
         return personaService.findOneById(dni);
-
     }
 
     @PostMapping
