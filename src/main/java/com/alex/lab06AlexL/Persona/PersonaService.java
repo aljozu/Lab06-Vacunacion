@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import com.alex.lab06alexl.exception.CustomException;
 import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class PersonaService {
             throw new CustomException("El usuario con el dni " + dni + " no existe!");
     }
 
-    private Boolean existe(Persona persona) throws Exception {
+    private Boolean existe(Persona persona) throws UnirestException {
         String url = "http://ws-consultas.herokuapp.com/api/dni/" + persona.getId();
 
         int code = Unirest.get(url).asString().getStatus();
@@ -57,7 +58,7 @@ public class PersonaService {
         }
     }
 
-    public void addNewPersona(Persona persona) throws Exception {
+    public void addNewPersona(Persona persona) throws UnirestException {
         Optional<Persona> personaOptional = personaRepository.findById(persona.getId());
         if (personaOptional.isPresent()) {
             throw new CustomException("Este DNI ya se encuentra registrado");

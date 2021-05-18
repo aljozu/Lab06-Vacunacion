@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.persistence.*;
 
+import personadto.PersonaDTO;
+
 @Entity
 @Table
 public class Persona {
@@ -21,9 +23,20 @@ public class Persona {
     @Transient
     private LocalDate fdv;
 
-    public Persona() {}
-    
-    public Persona(String id, String nombre, String apellido, LocalDate fdn, String tlf, String email){
+    public Persona() {
+    }
+
+    public Persona(PersonaDTO personaDTO) {
+        this.id = personaDTO.getIdDTO();
+        this.nombres = personaDTO.getNombresDTO();
+        this.apellidos = personaDTO.getApellidosDTO();
+        this.fdn = personaDTO.getFdnDTO();
+        this.tlf = personaDTO.getTlfDTO();
+        this.email = personaDTO.getEmailDTO();
+        this.fdv = personaDTO.getFdnDTO();
+    }
+
+    public Persona(String id, String nombre, String apellido, LocalDate fdn, String tlf, String email) {
         this.id = id;
         this.nombres = nombre;
         this.apellidos = apellido;
@@ -81,7 +94,7 @@ public class Persona {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Persona : " + "id = " + id + ", nombre =  " + nombres + ", apellidos = " + apellidos;
     }
 

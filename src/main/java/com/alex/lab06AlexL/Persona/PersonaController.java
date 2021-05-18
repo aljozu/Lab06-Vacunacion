@@ -3,6 +3,8 @@ package com.alex.lab06alexl.persona;
 import java.util.List;
 import java.util.logging.Logger;
 
+import com.mashape.unirest.http.exceptions.UnirestException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import personadto.PersonaDTO;
 
 @RestController
 @RequestMapping(path = "api/persona")
@@ -41,7 +45,8 @@ public class PersonaController {
     }
 
     @PostMapping
-    public void registerNewPersona(@RequestBody Persona persona) throws Exception {
+    public void registerNewPersona(@RequestBody PersonaDTO personaDTO) throws UnirestException {
+        var persona = new Persona(personaDTO);
         personaService.addNewPersona(persona);
     }
 
